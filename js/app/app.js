@@ -7,7 +7,7 @@ define([
 
     var initialize = function () {
         var appView = new AppView();
-        $('body').append(appView.render().el);
+        $('body').append(appView.el);
 
         var router = new Router(appView);
         Backbone.history.start();

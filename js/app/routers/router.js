@@ -9,16 +9,20 @@ define([
           routes: {
               '': 'goToDash',
               'dash': 'goToDash',
+              'dash/:place': 'goToDash',
               'about': 'goToAbout'
 
           },
 
-          initialize: function () {
+          initialize: function (view) {
               this.appView = view;
           },
 
-          goToDash: function () {
+          goToDash: function (place) {
               this.appView.setPage('dash');
+              if (place) {
+                  alert('Weather detail for ' + place);
+              }
           },
 
           goToAbout: function () {
