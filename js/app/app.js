@@ -1,40 +1,19 @@
 define([
-    'jquery',
-    'bootstrap'
-], function ($, bootstrap) {
+    'app/views/app',
+    'app/routers/router'
+],  function (AppView, Router) {
 
     'use strict';
 
-    var id = 'content';
-
-    var getId = function () {
-      return id;
-    };
-
-    var getTimeString = function () {
-        var date = new Date();
-        return [date.getHours(), ':', date.getMinutes()].join('');
-    };
-
     var initialize = function () {
-        $('body').append('<div id="'+id+'"></div>');
-    };
+        var appView = new AppView();
+        $('body').append(appView.render().el);
 
-    var displayTime = function() {
-        var html = [
-            '<div class="alert">',
-                '<button type="button" class="close" data-dismiss="alert">&times;</button>', 
-                'The time is: ',
-                getTimeString(),
-            '</div>'
-        ].join('');
-        $('#' + id).html(html);
+        var router = new Router(appView);
+        Backbone.history.start();
     };
 
     return {
-        initialize: initialize,
-        displayTime: displayTime,
-        getId: getId
+        initialize: initialize
     }
-
 });
